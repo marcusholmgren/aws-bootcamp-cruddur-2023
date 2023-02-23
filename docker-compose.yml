@@ -1,0 +1,57 @@
+version: '3.9'
+
+services:
+  web:
+    build: ./backend-flask
+    command: gunicorn --bind 0.0.0.0:5000 app:app
+    volumes:
+      - ./backend-flask/:/usr/src/app/
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - FRONTEND_URL=*
+      - BACKEND_URL=*
+      - DATABASE_URL=postgresql://postgres:password@db:5432/postgres
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+    depends_on:
+      - db
+      - dynamodb-local
+
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  dynamodb-local:
+    # https://stackoverflow.com/questions/67533058/persist-local-dynamodb-data-in-volumes-lack-permission-unable-to-open-databa
+    # We needed to add user:root to get this working.
+    user: root
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+
+# the name flag is a hack to change the default prepend folder
+# name when outputting the image names
+networks:
+  internal-network:
+    driver: bridge
+    name: cruddur
+
+volumes:
+  postgres_data:
+    driver: local
