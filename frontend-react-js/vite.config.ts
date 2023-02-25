@@ -20,6 +20,7 @@ export default defineConfig({
     setupFiles: './src/setupTests.ts',
     css: false,
     coverage: {
+      provider: 'c8',
       reporter: ['text', 'html'],
       exclude: [
         'node_modules/',
