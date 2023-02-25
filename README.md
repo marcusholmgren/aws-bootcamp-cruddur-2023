@@ -20,12 +20,29 @@ Set execution permissions on the entrypoint script:
 chmod +x ./backend-flask/entrypoint.sh
 ```
 
+#### Docker Compose
+
+The simplest way to run the application is to use Docker Compose. It will build the images and run the containers for the frontend and backend.
+
+From the root directory run:
+```shell
+docker-compose up
+```
+
+This will build the images and run the containers for the frontend and backend.
+
+To stop the containers, press `Ctrl+C` in the terminal. Or run:
+
+```shell
+docker-compose down
+```
+
 ## Journaling Homework
 
 The `/journal` directory contains
 
 - [X] [Week 0](journal/week0.md)
-- [ ] [Week 1](journal/week1.md)
+- [X] [Week 1](journal/week1.md)
 - [ ] [Week 2](journal/week2.md)
 - [ ] [Week 3](journal/week3.md)
 - [ ] [Week 4](journal/week4.md)
