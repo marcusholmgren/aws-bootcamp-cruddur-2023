@@ -11,8 +11,8 @@ services:
     environment:
       FLASK_ENV: development
       FLASK_DEBUG: 1
-      FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
-      BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      FRONTEND_URL: "http://localhost:5173"
+      BACKEND_URL: "http://localhost:5001"
       DATABASE_URL: postgresql://postgres:password@db:5432/postgres
       SQL_HOST: db
       SQL_PORT: 5432
@@ -28,7 +28,7 @@ services:
     volumes:
       - ./frontend-react-js/src:/app/src
     environment:
-      VITE_REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      VITE_REACT_APP_BACKEND_URL: "http://localhost:5001"
 
   db:
     image: postgres:13-alpine
