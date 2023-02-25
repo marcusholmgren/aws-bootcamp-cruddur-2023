@@ -1,7 +1,11 @@
 import { ReactComponent as ShareIcon } from './svg/share.svg';
+import React from 'react';
 
-export default function ActivityActionRepost(props) {
-  const onclick = (event) => {
+type Props = {
+  activity_uuid: string;
+};
+export default function ActivityActionRepost(props: Props) {
+  const onclick = (event: React.UIEvent<HTMLElement>) => {
     console.log('trigger share');
   };
 

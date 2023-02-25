@@ -1,9 +1,11 @@
 import './MessageForm.css';
 import React from 'react';
-import process from 'process';
 import { useParams } from 'react-router-dom';
 
-export default function ActivityForm(props) {
+type Props = {
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+};
+export default function ActivityForm(props: Props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
   const params = useParams();
@@ -14,10 +16,10 @@ export default function ActivityForm(props) {
     classes.push('err');
   }
 
-  const onsubmit = async (event) => {
+  const onsubmit = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages`;
+      const backend_url = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/messages`;
       console.log('onsubmit payload', message);
       const res = await fetch(backend_url, {
         method: 'POST',
@@ -41,7 +43,7 @@ export default function ActivityForm(props) {
     }
   };
 
-  const textarea_onchange = (event) => {
+  const textarea_onchange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCount(event.target.value.length);
     setMessage(event.target.value);
   };

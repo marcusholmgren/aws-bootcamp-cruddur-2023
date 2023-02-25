@@ -11,7 +11,7 @@ export default function SigninPage() {
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
 
-  const onsubmit = async (event) => {
+  const onsubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrors('');
     console.log('onsubmit');
@@ -24,10 +24,10 @@ export default function SigninPage() {
     return false;
   };
 
-  const email_onchange = (event) => {
+  const email_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
-  const password_onchange = (event) => {
+  const password_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -63,7 +63,7 @@ export default function SigninPage() {
           </div>
         </form>
         <div className='dont-have-an-account'>
-          <span>Don't have an account?</span>
+          <span>Don&apos;t have an account?</span>
           <Link to='/signup'>Sign up!</Link>
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function SignupPage() {
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
 
-  const onsubmit = async (event) => {
+  const onsubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log('SignupPage.onsubmit');
     // [TODO] Authenication
@@ -27,16 +27,16 @@ export default function SignupPage() {
     return false;
   };
 
-  const name_onchange = (event) => {
+  const name_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
-  const email_onchange = (event) => {
+  const email_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
-  const username_onchange = (event) => {
+  const username_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
-  const password_onchange = (event) => {
+  const password_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 

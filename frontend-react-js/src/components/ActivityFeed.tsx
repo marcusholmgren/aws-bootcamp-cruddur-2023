@@ -1,7 +1,14 @@
 import './ActivityFeed.css';
 import ActivityItem from './ActivityItem';
+import React from 'react';
 
-export default function ActivityFeed(props) {
+type Props = {
+  title: string;
+  activities: Array<Activity>;
+  setReplyActivity: (activity: Activity) => void;
+  setPopped: (popped: boolean) => void;
+};
+export default function ActivityFeed(props: Props) {
   return (
     <div className='activity_feed'>
       <div className='activity_feed_heading'>

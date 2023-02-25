@@ -1,6 +1,8 @@
 import './SuggestedUserItem.css';
+import React from 'react';
 
-export default function SugestedUserItem(props) {
+type Props = User;
+export default function SugestedUserItem(props: Props) {
   return (
     <div className='user'>
       <div className='avatar'></div>

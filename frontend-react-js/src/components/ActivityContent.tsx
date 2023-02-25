@@ -3,9 +3,13 @@ import './ActivityContent.css';
 import { Link } from 'react-router-dom';
 import { DateTime } from 'luxon';
 import { ReactComponent as BombIcon } from './svg/bomb.svg';
+import React from 'react';
 
-export default function ActivityContent(props) {
-  const format_time_created_at = (value) => {
+type Props = {
+  activity: Activity;
+};
+export default function ActivityContent(props: Props) {
+  const format_time_created_at = (value: string) => {
     // format: 2050-11-20 18:32:47 +0000
     const past = DateTime.fromISO(value);
     const now = DateTime.now();
@@ -21,7 +25,7 @@ export default function ActivityContent(props) {
     }
   };
 
-  const format_time_expires_at = (value) => {
+  const format_time_expires_at = (value: string) => {
     // format: 2050-11-20 18:32:47 +0000
     const future = DateTime.fromISO(value);
     const now = DateTime.now();

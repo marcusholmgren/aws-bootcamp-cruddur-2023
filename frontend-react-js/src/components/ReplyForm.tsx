@@ -1,11 +1,18 @@
 import './ReplyForm.css';
 import React from 'react';
-import process from 'process';
 import { ReactComponent as BombIcon } from './svg/bomb.svg';
 
 import ActivityContent from '../components/ActivityContent';
 
-export default function ReplyForm(props) {
+type Props = {
+  activity: Activity;
+  activities: Activity[];
+  setActivities: React.Dispatch<React.SetStateAction<Activity[]>>;
+  popped: boolean;
+  setPopped: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function ReplyForm(props: Props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
 
@@ -15,10 +22,12 @@ export default function ReplyForm(props) {
     classes.push('err');
   }
 
-  const onsubmit = async (event) => {
+  const onsubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/${props.activity.uuid}/reply`;
+      const backend_url = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/activities/${
+        props.activity.uuid
+      }/reply`;
       const res = await fetch(backend_url, {
         method: 'POST',
         headers: {
@@ -34,7 +43,7 @@ export default function ReplyForm(props) {
         // add activity to the feed
 
         let activities_deep_copy = JSON.parse(JSON.stringify(props.activities));
-        let found_activity = activities_deep_copy.find(function (element) {
+        let found_activity = activities_deep_copy.find(function (element: Activity) {
           return element.uuid === props.activity.uuid;
         });
         found_activity.replies.push(data);
@@ -52,7 +61,7 @@ export default function ReplyForm(props) {
     }
   };
 
-  const textarea_onchange = (event) => {
+  const textarea_onchange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCount(event.target.value.length);
     setMessage(event.target.value);
   };
@@ -71,7 +80,6 @@ export default function ReplyForm(props) {
             <div className='activity_wrap'>{content}</div>
             <form className='replies_form' onSubmit={onsubmit}>
               <textarea
-                type='text'
                 placeholder='what is your reply?'
                 value={message}
                 onChange={textarea_onchange}

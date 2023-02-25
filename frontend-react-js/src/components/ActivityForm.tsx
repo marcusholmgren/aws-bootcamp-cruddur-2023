@@ -1,9 +1,13 @@
 import './ActivityForm.css';
 import React from 'react';
-import process from 'process';
 import { ReactComponent as BombIcon } from './svg/bomb.svg';
 
-export default function ActivityForm(props) {
+type Props = {
+  popped: boolean;
+  setPopped: React.Dispatch<React.SetStateAction<boolean>>;
+  setActivities: React.Dispatch<React.SetStateAction<Array<Activity>>>;
+};
+export default function ActivityForm(props: Props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
   const [ttl, setTtl] = React.useState('7-days');
@@ -14,10 +18,10 @@ export default function ActivityForm(props) {
     classes.push('err');
   }
 
-  const onsubmit = async (event) => {
+  const onsubmit = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities`;
+      const backend_url = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/activities`;
       console.log('onsubmit payload', message);
       const res = await fetch(backend_url, {
         method: 'POST',
@@ -47,12 +51,12 @@ export default function ActivityForm(props) {
     }
   };
 
-  const textarea_onchange = (event) => {
+  const textarea_onchange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCount(event.target.value.length);
     setMessage(event.target.value);
   };
 
-  const ttl_onchange = (event) => {
+  const ttl_onchange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setTtl(event.target.value);
   };
 
@@ -60,7 +64,6 @@ export default function ActivityForm(props) {
     return (
       <form className='activity_form' onSubmit={onsubmit}>
         <textarea
-          type='text'
           placeholder='what would you like to say?'
           value={message}
           onChange={textarea_onchange}

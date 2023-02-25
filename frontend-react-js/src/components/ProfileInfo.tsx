@@ -5,10 +5,13 @@ import React from 'react';
 // [TODO] Authenication
 import Cookies from 'js-cookie';
 
-export default function ProfileInfo(props) {
+type Props = {
+  user: User;
+};
+export default function ProfileInfo(props: Props) {
   const [popped, setPopped] = React.useState(false);
 
-  const click_pop = (event) => {
+  const click_pop = (event: React.UIEvent<HTMLDivElement>) => {
     setPopped(!popped);
   };
 

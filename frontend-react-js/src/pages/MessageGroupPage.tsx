@@ -12,7 +12,7 @@ import Cookies from 'js-cookie';
 
 export default function MessageGroupPage() {
   const [messageGroups, setMessageGroups] = React.useState([]);
-  const [messages, setMessages] = React.useState([]);
+  const [messages, setMessages] = React.useState<Array<Message>>([]);
   const [popped, setPopped] = React.useState([]);
   const [user, setUser] = React.useState(null);
   const dataFetchedRef = React.useRef(false);

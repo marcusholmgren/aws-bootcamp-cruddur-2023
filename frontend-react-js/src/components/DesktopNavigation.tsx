@@ -3,8 +3,14 @@ import { ReactComponent as Logo } from './svg/logo.svg';
 import DesktopNavigationLink from '../components/DesktopNavigationLink';
 import CrudButton from '../components/CrudButton';
 import ProfileInfo from '../components/ProfileInfo';
+import React from 'react';
 
-export default function DesktopNavigation(props) {
+type Props = {
+  user: User | null | undefined;
+  active: string;
+  setPopped: (popped: boolean) => void;
+};
+export default function DesktopNavigation(props: Props) {
   let button;
   let profile;
   let notificationsLink;

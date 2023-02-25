@@ -14,10 +14,10 @@ export default function ConfirmationPage() {
 
   const params = useParams();
 
-  const code_onchange = (event) => {
+  const code_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCode(event.target.value);
   };
-  const email_onchange = (event) => {
+  const email_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
@@ -26,7 +26,7 @@ export default function ConfirmationPage() {
     // [TODO] Authenication
   };
 
-  const onsubmit = async (event) => {
+  const onsubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log('ConfirmationPage.onsubmit');
     // [TODO] Authenication

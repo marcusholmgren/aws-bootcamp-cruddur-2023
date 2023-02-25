@@ -1,7 +1,12 @@
 import { ReactComponent as RepostIcon } from './svg/repost.svg';
+import React from 'react';
 
-export default function ActivityActionRepost(props) {
-  const onclick = (event) => {
+type Props = {
+  count: number;
+  activity_uuid: string;
+};
+export default function ActivityActionRepost(props: Props) {
+  const onclick = (event: React.UIEvent<HTMLElement>) => {
     console.log('trigger repost');
   };
 

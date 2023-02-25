@@ -1,9 +1,13 @@
 import './MessageItem.css';
 import { Link } from 'react-router-dom';
 import { DateTime } from 'luxon';
+import React from 'react';
 
-export default function MessageItem(props) {
-  const format_time_created_at = (value) => {
+type Props = {
+  message: Message;
+};
+export default function MessageItem(props: Props) {
+  const format_time_created_at = (value: string) => {
     // format: 2050-11-20 18:32:47 +0000
     const created = DateTime.fromISO(value);
     const now = DateTime.now();
@@ -23,7 +27,7 @@ export default function MessageItem(props) {
     <Link className='message_item' to={`/messages/@` + props.message.handle}>
       <div className='message_avatar'></div>
       <div className='message_content'>
-        <div classsName='message_meta'>
+        <div className='message_meta'>
           <div className='message_identity'>
             <div className='display_name'>{props.message.display_name}</div>
             <div className='handle'>@{props.message.handle}</div>

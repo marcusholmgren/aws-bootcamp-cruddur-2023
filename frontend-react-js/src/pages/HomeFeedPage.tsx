@@ -7,7 +7,7 @@ import ActivityFeed from '../components/ActivityFeed';
 import ActivityForm from '../components/ActivityForm';
 import ReplyForm from '../components/ReplyForm';
 
-// [TODO] Authenication
+// [TODO] Authentication
 import Cookies from 'js-cookie';
 
 export default function HomeFeedPage() {
@@ -20,7 +20,7 @@ export default function HomeFeedPage() {
 
   const loadData = async () => {
     try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/home`;
+      const backend_url = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/activities/home`;
       const res = await fetch(backend_url, {
         method: 'GET',
       });
@@ -37,7 +37,7 @@ export default function HomeFeedPage() {
 
   const checkAuth = async () => {
     console.log('checkAuth');
-    // [TODO] Authenication
+    // [TODO] Authentication
     if (Cookies.get('user.logged_in')) {
       setUser({
         display_name: Cookies.get('user.name'),

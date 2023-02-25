@@ -12,7 +12,7 @@ export default function RecoverPage() {
   const [errors, setErrors] = React.useState('');
   const [formState, setFormState] = React.useState('send_code');
 
-  const onsubmit_send_code = async (event) => {
+  const onsubmit_send_code = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log('onsubmit_send_code');
     return false;
@@ -23,23 +23,20 @@ export default function RecoverPage() {
     return false;
   };
 
-  const username_onchange = (event) => {
+  const username_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
-  const password_onchange = (event) => {
+  const password_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-  const password_again_onchange = (event) => {
+  const password_again_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordAgain(event.target.value);
   };
-  const code_onchange = (event) => {
+  const code_onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCode(event.target.value);
   };
 
-  let el_errors;
-  if (errors) {
-    el_errors = <div className='errors'>{errors}</div>;
-  }
+  const el_errors = errors ? <div className='errors'>{errors}</div> : null;
 
   const send_code = () => {
     return (

@@ -1,7 +1,11 @@
 import './TrendingsSection.css';
 import TrendItem from '../components/TrendItem';
+import React from 'react';
 
-export default function TrendingsSection(props) {
+type Props = {
+  trendings: Array<Trend>;
+};
+export default function TrendingsSection(props: Props) {
   return (
     <div className='trendings'>
       <div className='trendings-title'>Trending</div>

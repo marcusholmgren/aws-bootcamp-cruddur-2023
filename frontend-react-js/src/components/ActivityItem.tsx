@@ -5,8 +5,14 @@ import ActivityActionReply from '../components/ActivityActionReply';
 import ActivityActionRepost from '../components/ActivityActionRepost';
 import ActivityActionLike from '../components/ActivityActionLike';
 import ActivityActionShare from '../components/ActivityActionShare';
+import React from 'react';
 
-export default function ActivityItem(props) {
+type Props = {
+  activity: Activity;
+  setReplyActivity: (activity: Activity) => void;
+  setPopped: (popped: boolean) => void;
+};
+export default function ActivityItem(props: Props) {
   let replies;
   if (props.activity.replies) {
     replies = (

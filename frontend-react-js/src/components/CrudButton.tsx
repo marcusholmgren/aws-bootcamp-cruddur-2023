@@ -1,7 +1,11 @@
 import './CrudButton.css';
+import React from 'react';
 
-export default function CrudButton(props) {
-  const pop_activities_form = (event) => {
+type Props = {
+  setPopped: (popped: boolean) => void;
+};
+export default function CrudButton(props: Props) {
+  const pop_activities_form = (event: React.UIEvent<HTMLButtonElement>) => {
     props.setPopped(true);
   };
 

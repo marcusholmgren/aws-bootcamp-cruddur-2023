@@ -1,7 +1,11 @@
 import './MessageFeed.css';
 import MessageItem from './MessageItem';
+import React from 'react';
 
-export default function MessageFeed(props) {
+type Props = {
+  messages: Message[];
+};
+export default function MessageFeed(props: Props) {
   return (
     <div className='message_feed'>
       <div className='message_feed_heading'>

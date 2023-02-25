@@ -2,11 +2,21 @@ import './MessageGroupItem.css';
 import { Link } from 'react-router-dom';
 import { DateTime } from 'luxon';
 import { useParams } from 'react-router-dom';
+import React from 'react';
 
-export default function MessageGroupItem(props) {
+type Props = {
+  message_group: {
+    id: number;
+    handle: string;
+    display_name: string;
+    message: string;
+    created_at: string;
+  };
+};
+export default function MessageGroupItem(props: Props) {
   const params = useParams();
 
-  const format_time_created_at = (value) => {
+  const format_time_created_at = (value: string) => {
     // format: 2050-11-20 18:32:47 +0000
     const created = DateTime.fromISO(value);
     const now = DateTime.now();
@@ -34,7 +44,7 @@ export default function MessageGroupItem(props) {
     <Link className={classes()} to={`/messages/@` + props.message_group.handle}>
       <div className='message_group_avatar'></div>
       <div className='message_content'>
-        <div classsName='message_group_meta'>
+        <div className='message_group_meta'>
           <div className='message_group_identity'>
             <div className='display_name'>{props.message_group.display_name}</div>
             <div className='handle'>@{props.message_group.handle}</div>

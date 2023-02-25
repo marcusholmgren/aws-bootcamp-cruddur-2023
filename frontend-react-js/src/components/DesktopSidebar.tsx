@@ -3,8 +3,12 @@ import Search from '../components/Search';
 import TrendingSection from '../components/TrendingsSection';
 import SuggestedUsersSection from '../components/SuggestedUsersSection';
 import JoinSection from '../components/JoinSection';
+import React from 'react';
 
-export default function DesktopSidebar(props) {
+type Props = {
+  user: User | null | undefined;
+};
+export default function DesktopSidebar(props: Props) {
   const trendings = [
     { hashtag: '100DaysOfCloud', count: 2053 },
     { hashtag: 'CloudProject', count: 8253 },
@@ -25,6 +29,7 @@ export default function DesktopSidebar(props) {
   }
   let join;
   if (props.user) {
+    /* empty */
   } else {
     join = <JoinSection />;
   }
