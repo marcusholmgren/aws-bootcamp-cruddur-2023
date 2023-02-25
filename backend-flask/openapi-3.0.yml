@@ -2,7 +2,7 @@ openapi: '3.0.2'
 info:
   title: Cruddur Backend API
   version: '1.0'
-    
+
 servers:
   - url: https://api.server.test/v1
 paths:
@@ -90,6 +90,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Activity'
+  /api/activities/notifications:
+    get:
+      operationId: data_notifications_api_activities_notifications_get
+      responses:
+        '422':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UnprocessableEntity'
+                type: array
+          description: Unprocessable Entity
   /api/message_groups:
     get:
       description: 'Return a list of two way private conversations for the user'
